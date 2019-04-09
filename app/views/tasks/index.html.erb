@@ -1,8 +1,17 @@
 <ul>
-  <% @tasks.each do |task| %>
+  <% @tasks.each do |todo_item| %>
       <li>
-        <%= task[:task]%>,
-        status: <%= task[:status][1] %>
+        Task: <%= todo_item.task%>,
+        <ul>
+          <li>        
+            Description: <%= todo_item.descriptions %>
+          </li>
+        </ul>
+        <ul>
+          <li>        
+            Completion date: <%= todo_item.completion_date %>
+          </li>
+        </ul>
       </li>
   <% end %>
 </ul>
