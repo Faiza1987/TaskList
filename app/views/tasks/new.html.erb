@@ -1,0 +1,14 @@
+<h2> Add a new task! </h2>
+<p> Please fill out the form below to add a new task to the TaskList.</p>
+
+<%# Syntax for form-with %>
+<%= form_with model: @task, class: 'create_task' do |f| %>
+  <%= f.label :task %>
+  <%= f.text_field :task %>
+  <%= f.label :descriptions %>
+  <%= f.text_field :descriptions %>
+  <%= f.label :completion_date %>
+  <%= f.text_field :completion_date %>
+
+  <%= f.submit "Add Task", class: "task-form_submit-btn" %>
+<% end %>

@@ -1,17 +1,8 @@
 <ul>
   <% @tasks.each do |todo_item| %>
       <li>
-        Task: <%= todo_item.task%>,
-        <ul>
-          <li>        
-            Description: <%= todo_item.descriptions %>
-          </li>
-        </ul>
-        <ul>
-          <li>        
-            Completion date: <%= todo_item.completion_date %>
-          </li>
-        </ul>
+        Task: <%= link_to todo_item.task, task_path(todo_item.id) %>,
       </li>
   <% end %>
 </ul>
+

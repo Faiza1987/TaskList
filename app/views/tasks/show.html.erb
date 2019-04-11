@@ -1,0 +1,12 @@
+<h3>
+Task: <%= @task.task %>,
+</h3>  
+<p>  
+Description: <%= @task.descriptions %>  
+</p>
+<p>   
+Completion date: <%= @task.completion_date %>
+</p>
+
+<%= link_to "Back to Tasks", tasks_path %>
+<%= link_to "Edit Task", edit_task_path %>

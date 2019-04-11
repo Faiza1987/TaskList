@@ -2,8 +2,10 @@
 
 one:
   task: MyString
-  status: MyString
+  descriptions: MyString
+  completion_date: MyString
 
 two:
   task: MyString
-  status: MyString
+  descriptions: MyString
+  completion_date: MyString
