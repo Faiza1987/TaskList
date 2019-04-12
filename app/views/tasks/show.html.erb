@@ -10,3 +10,4 @@ Completion date: <%= @task.completion_date %>
 
 <%= link_to "Back to Tasks", tasks_path %>
 <%= link_to "Edit Task", edit_task_path %>
+<%= link_to "Delete #{@task.task}", task_path(@task.id), method: :delete, data: {confirm: "Are you sure?"} %>

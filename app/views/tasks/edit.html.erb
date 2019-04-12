@@ -1,18 +1,10 @@
 <h2>Edit this task!</h2>
+<p> Please fill out the form below to edit the task.</p>
 
-<%= form_with model: @task, class: 'edit-task' do |f| %>
-
-  <p>Please fill out this form to edit this task</p>
-    <%= f.label "Edit name of task:"  %>
-    <%= f.text_field :name %>
-  <%= f.label "Edit description of task:" %>
-  <%= f.text_field :description %>
-  <%= f.label "Change completion status:" %>
-  <%= f.text_field :completed %>
-
-  <%= f.submit "Edit Task", class: "edit-button" %>
-
-<% end %>
+<%= render partial: 'form', locals: {
+  form_class: 'edit_task',
+  action_name: 'Update Task'
+} %>
 
 
 

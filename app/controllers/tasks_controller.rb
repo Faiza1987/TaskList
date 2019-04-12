@@ -1,17 +1,5 @@
 class TasksController < ApplicationController
 
-  # TASKS = [
-  #   {
-  #     task: "Hikefinder exercise Section 1", status: [:complete, :incomplete] 
-  #   },
-  #       {
-  #     task: "Make lunch for the week", status: [:complete, :incomplete] 
-  #   },
-  #       {
-  #     task: "Watch short video on MVC", status: [:complete, :incomplete] 
-  #   },
-
-  # ]
   def index
     @tasks = Task.all;
   end
@@ -31,13 +19,9 @@ class TasksController < ApplicationController
     @task.completion_date = "incomplete"
   end
 
-    def create 
-    new_task = Task.new(
-      task: params["task"]["task"],
-      descriptions: params["task"]["descriptions"], 
-      completion_date: params["task"]["completion_date"]
-    )
-        
+  def create 
+    new_task = Task.new(task_params)   
+
     is_successful = new_task.save
 
     if is_successful
@@ -45,36 +29,42 @@ class TasksController < ApplicationController
     else
       head :found
     end
-
-    # Book.create will also work
   end
 
   def edit 
-    task_id = params[:id].to_i
-    @task = Task.find_by(id: task_id)
+    @task = Task.find_by(id: params[:id])
+    # task_id = params[:id].to_i
+    # @task = Task.find_by(id: task_id)
   end
 
-  def update 
-    edit_task_id = params[:id].to_i
-    edited_task = Task.find(edit_task_id)
-    
-    # follows browser structure
-    new_completion_date = params["task"]["completed"]
-    new_description = params["task"]["description"]
-    new_name = params["task"]["name"]
+  def update
+    existing_task = Task.find_by(id: params[:id])
 
-    # based on schema
-    edited_task.task = new_name
-    edited_task.descriptions = new_description
-    edited_task.completion_date = new_completion_date
-    
-    is_successful = edited_task.save
-    # raise
+    # is_successful = existing_task.update(task_params)
 
-    if is_successful
-      redirect_to task_path(edit_task_id)
+    if existing_task && existing_task.update(task_params)
+      redirect_to task_path(existing_task.id)
     else
       redirect_to tasks_path
     end
   end
+  
+  def destroy 
+    task = Task.find( params[:id] )
+    if task.nil?
+      head :not_found
+    else
+      task.destroy
+      redirect_to tasks_path
+    end
+  end
+
+
+    private 
+
+  def task_params 
+    return params.require(:task).permit(:task, :descriptions, :completion_date)
+  end
+
+  
 end

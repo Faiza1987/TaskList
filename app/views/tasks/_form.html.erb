@@ -1,0 +1,12 @@
+<%= form_with model: @task, class: form_class do |f| %>
+
+  <%= f.label "Edit name of task:"  %>
+  <%= f.text_field :task %>
+  <%= f.label "Edit description of task:" %>
+  <%= f.text_field :descriptions %>
+  <%= f.label "Change completion status:" %>
+  <%= f.text_field :completion_date %>
+
+  <%= f.submit action_name, class: "form-submit-button" %>
+
+<% end %>
