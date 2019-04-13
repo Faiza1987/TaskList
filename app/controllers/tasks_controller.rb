@@ -1,11 +1,11 @@
 class TasksController < ApplicationController
 
   def index
-    @tasks = Task.all;
+    @tasks = Task.all.order(:id)
   end
 
   def show 
-    task_id = params[:id]
+    task_id = params[:id].to_i
     @task = Task.find_by(id: task_id)
 
     if @task.nil?
@@ -15,26 +15,28 @@ class TasksController < ApplicationController
 
   def new 
     @task = Task.new
-    @task.task = "I have to..."
-    @task.completion_date = "incomplete"
+    @task.task = "I have to... "
+    @task.completed = "Incomplete"
   end
 
   def create 
-    new_task = Task.new(task_params)   
+    new_task = Task.new(task_params)
 
     is_successful = new_task.save
 
     if is_successful
       redirect_to task_path(new_task.id)
     else
-      head :found
+      head :not_found
     end
   end
 
-  def edit 
+  def edit
     @task = Task.find_by(id: params[:id])
-    # task_id = params[:id].to_i
-    # @task = Task.find_by(id: task_id)
+
+    if @task.nil?
+      redirect_to tasks_path
+    end
   end
 
   def update
@@ -49,6 +51,16 @@ class TasksController < ApplicationController
     end
   end
   
+  def complete
+    task = Task.find_by(id: params[:id])
+
+    task.completed?
+    task.toggle(:completed)
+    task.save
+
+    redirect_to tasks_path
+  end
+  
   def destroy 
     task = Task.find( params[:id] )
     if task.nil?
@@ -60,11 +72,9 @@ class TasksController < ApplicationController
   end
 
 
-    private 
+  private
 
-  def task_params 
-    return params.require(:task).permit(:task, :descriptions, :completion_date)
+  def task_params
+    return params.require(:task).permit(:task, :descriptions, :completed)
   end
-
-  
 end

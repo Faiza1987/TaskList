@@ -5,7 +5,7 @@ describe TasksController do
   #   you may need to modify this.
   let (:task) {
     Task.create task: "sample task", descriptions: "this is an example for a test",
-                completion_date: "date"
+                completed: false
   }
 
   # Tests for Wave 1
@@ -82,7 +82,7 @@ describe TasksController do
 
       new_task = Task.find_by(task: task_hash[:task][:task])
       expect(new_task.descriptions).must_equal task_hash[:task][:descriptions]
-      expect(new_task.completion_date).must_equal task_hash[:task][:completion_date]
+      expect(new_task.completed).must_equal task_hash[:task][:completed]
 
       must_respond_with :redirect
       must_redirect_to task_path(new_task.id)
@@ -121,11 +121,11 @@ describe TasksController do
         task: {
           task: "Cleaning",
           descriptions: "My apartment",
-          completion_date: "tomorrow"
+          completed: false
         }
       }
                       
-      task_to_be_updated = Task.create(task: "Clean", descriptions: "entire apartment", completion_date: "today")
+      task_to_be_updated = Task.create(task: "Clean", descriptions: "entire apartment", completed: false)
       patch task_path(task_to_be_updated.id, params: task_hash)
       
       # pulls task back from database
@@ -142,9 +142,9 @@ describe TasksController do
       puts task_hash[:task][:descriptions]
       expect(task_to_be_updated.descriptions).must_equal task_hash[:task][:descriptions]
 
-      puts "VVVVVV COMPLETION_DATE VVVVVVVV"
-      puts task_hash[:task][:completion_date]
-      expect(task_to_be_updated.completion_date).must_equal task_hash[:task][:completion_date]
+      puts "VVVVVV completed VVVVVVVV"
+      puts task_hash[:task][:completed]
+      expect(task_to_be_updated.completed).must_equal task_hash[:task][:completed]
       
     end
 
@@ -154,7 +154,7 @@ describe TasksController do
         task: {
           task: "Cleaning",
           descriptions: "My apartment",
-          completion_date: "tomorrow"
+          completed: false
         }
       }
 

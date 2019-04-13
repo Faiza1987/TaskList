@@ -3,9 +3,9 @@
 one:
   task: MyString
   descriptions: MyString
-  completion_date: MyString
+  completed: Boolean
 
 two:
   task: MyString
   descriptions: MyString
-  completion_date: MyString
+  completed: Boolean

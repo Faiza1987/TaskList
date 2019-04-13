@@ -13,3 +13,61 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+    background-color: bisque;
+    text-align: center;
+}
+
+.index ul li {
+    list-style-type: none;
+}
+
+
+/* .complete-button {
+    color: green;
+} */
+
+.buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.complete-button {
+    background-color: green;
+    color: white;
+}
+
+.incomplete-button {
+    background-color: blue;
+    color: white;
+}
+
+.delete-button {
+    background-color: red;
+    color: white;
+}
+
+.home-button {
+    background-color: cornflowerblue;
+    color: white;
+    font: 11px Arial;
+    text-decoration: none;
+    padding: 2px 3px 2px 3px;
+    border-top: 1px solid #CCCCCC;
+    border-right: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+    border-left: 1px solid #CCCCCC;
+}
+
+.edit-button {
+    color: white;
+    background-color: coral;
+    font: 11px Arial;
+    text-decoration: none;
+    padding: 2px 3px 2px 3px;
+    border-top: 1px solid #CCCCCC;
+    border-right: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+    border-left: 1px solid #CCCCCC;
+}

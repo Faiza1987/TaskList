@@ -1,9 +1,16 @@
-<ul>
-  <% @tasks.each do |todo_item| %>
-      <li>
-        Task: <%= link_to todo_item.task, task_path(todo_item.id) %>,
-      </li>
-  <% end %>
-</ul>
+<section class="index">
+  <ul>
+    <% @tasks.each do |todo_item| %>
+        <li>
+          Completion status: <%= todo_item.completed %><br/>
+          <%= link_to todo_item.task, task_path(todo_item.id) %>,
+          <%= button_to "Mark Complete", {action: "complete", id: todo_item.id}, method: :patch, class: "complete-button"  %>
+          <%= button_to "Mark Incomplete", {action: "complete", id: todo_item.id}, method: :patch, class: "incomplete-button"   %><br/>
+          </div>
+        </li>
+    <% end %>
+  </ul>
 
-<%= link_to "New Task", new_task_path %>
+  <%= link_to "Add Task", new_task_path %>
+
+</section>
