@@ -167,12 +167,31 @@ describe TasksController do
 
   # Complete these tests for Wave 4
   describe "destroy" do
-    # Your tests go here
+    it "can delete a task" do
+      task = Task.create(task: "Exercise!")
+      
+      expect {
+        delete task_path(task.id)
+      }.must_change "Task.count", -1
 
+      must_respond_with :redirect
+      must_redirect_to tasks_path
+    end
+
+    it "returns an error for invalid id" do 
+      invalid_id = 999
+      delete task_path(invalid_id)
+      must_respond_with :not_found
+    end
   end
 
   # Complete for Wave 4
-  describe "toggle_complete" do
-    # Your tests go here
+  describe "complete" do
+    it "mark-complete button changes status of task from false to true" do
+      patch mark_complete_path(task.id)
+      task.reload
+      expect(task.completed).must_equal true
+      must_redirect_to tasks_path
+    end
   end
 end

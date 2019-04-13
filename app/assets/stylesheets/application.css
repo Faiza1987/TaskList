@@ -71,3 +71,15 @@ body {
     border-bottom: 1px solid #333333;
     border-left: 1px solid #CCCCCC;
 }
+
+.add-task-button {
+    color: white;
+    background-color: plum;
+    font: 11px Arial;
+    text-decoration: none;
+    padding: 2px 3px 2px 3px;
+    border-top: 1px solid #CCCCCC;
+    border-right: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+    border-left: 1px solid #CCCCCC;
+}

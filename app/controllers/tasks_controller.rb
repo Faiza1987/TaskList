@@ -50,7 +50,7 @@ class TasksController < ApplicationController
       redirect_to tasks_path
     end
   end
-  
+
   def complete
     task = Task.find_by(id: params[:id])
 
@@ -60,9 +60,9 @@ class TasksController < ApplicationController
 
     redirect_to tasks_path
   end
-  
+
   def destroy 
-    task = Task.find( params[:id] )
+    task = Task.find(params[:id])
     if task.nil?
       head :not_found
     else
