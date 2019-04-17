@@ -10,11 +10,9 @@ Completion status: <%= @task.completed %>
 
 <div class="buttons">
   <%= link_to "Back to Tasks", tasks_path, class: "home-button" %><br/>
-
+  
   <%= button_to "Mark Complete", {action: "complete", id: @task.id}, method: :patch, class: "complete-button" %>
-
   <%= button_to "Mark Incomplete", {action: "complete", id: @task.id}, method: :patch, class: "incomplete-button" %><br/>
-
   <%= link_to "Edit Task", edit_task_path, class: "edit-button" %><br/>
   <%= button_to "Delete #{@task.task}", task_path(@task.id), method: :delete, data: {confirm: "Are you sure?"}, class: "delete-button" %>
 </div>
