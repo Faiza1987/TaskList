@@ -16,7 +16,6 @@ class TasksController < ApplicationController
   def new 
     @task = Task.new
     @task.task = "I have to... "
-    @task.completed = "Incomplete"
   end
 
   def create 
@@ -54,7 +53,6 @@ class TasksController < ApplicationController
   def complete
     task = Task.find_by(id: params[:id])
 
-    task.completed?
     task.toggle(:completed)
     task.save
 
