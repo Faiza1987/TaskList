@@ -14,8 +14,7 @@ class TasksController < ApplicationController
   end
 
   def new 
-    @task = Task.new
-    @task.task = "I have to... "
+    @task = Task.new(task: "I have to ")
   end
 
   def create 
@@ -50,13 +49,15 @@ class TasksController < ApplicationController
     end
   end
 
-  def complete
+  def mark_complete
     task = Task.find_by(id: params[:id])
 
     task.toggle(:completed)
     task.save
+    task.touch
 
-    redirect_to tasks_path
+    # redirect_to tasks_path
+    redirect_back(fallback_location: tasks_path)
   end
 
   def destroy
